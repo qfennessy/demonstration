@@ -63,29 +63,29 @@ on:
 ####----------------------------------------------------------------------------
 env:
   ## Terraform Operations: Deploy, Destroy
-  deploy_terraform: true     ## ${{ secrets.DEPLOY_TERRAFORM }}
-  destroy_terraform: true    ## ${{ secrets.DESTROY_TERRAFORM }}
-  provision_terraform: true  ## ${{ secrets.PROVISION_TERRAFORM }}
+  deploy_terraform: ${{ secrets.DEPLOY_TERRAFORM }}
+  destroy_terraform: ${{ secrets.DESTROY_TERRAFORM }}
+  provision_terraform: ${{ secrets.PROVISION_TERRAFORM }}
   ## Terraform Input Parameters
   terraform_input_params: ''
   terraform_input_tfvars: ''
   ## Custom variables
-  inspect_deployment: true  ## ${{ secrets.INSPECT_DEPLOYMENT }}
+  inspect_deployment: ${{ secrets.INSPECT_DEPLOYMENT }}
   ## Update|Upgrade: System, Python, AWS CLI (latest)
-  update_system: true  ## ${{ secrets.UPDATE_SYSTEM_LATEST }}
-  update_python: true  ## ${{ secrets.UPDATE_PYTHON_LATEST }}
+  update_system: ${{ secrets.UPDATE_SYSTEM_LATEST }}
+  update_python: ${{ secrets.UPDATE_PYTHON_LATEST }}
   ## Access KeyPair variables
-  PRIVATE_KEYPAIR_FILE: .ssh/id_rsa  ## ${{ secrets.PRIVATE_KEYPAIR_FILE }}
-  PRIVATE_KEYPAIR_NAME: devops       ## ${{ secrets.PRIVATE_KEYPAIR_NAME }}
+  PRIVATE_KEYPAIR_FILE: ${{ secrets.PRIVATE_KEYPAIR_FILE }}
+  PRIVATE_KEYPAIR_NAME: ${{ secrets.PRIVATE_KEYPAIR_NAME }}
   PRIVATE_KEYPAIR_SECRET: ${{ secrets.PRIVATE_KEYPAIR_SECRET }}
   ## AWS Default variables
-  AWS_DEFAULT_ACCOUNT: 717024313876  ## ${{ secrets.AWS_DEFAULT_ACCOUNT }}
-  AWS_DEFAULT_PROFILE: default       ## ${{ secrets.AWS_DEFAULT_PROFILE }}
-  AWS_DEFAULT_REGION: us-east-1      ## ${{ secrets.AWS_DEFAULT_REGION }}
+  AWS_DEFAULT_ACCOUNT: ${{ secrets.AWS_DEFAULT_ACCOUNT }}
+  AWS_DEFAULT_PROFILE: ${{ secrets.AWS_DEFAULT_PROFILE }}
+  AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
   ## AWS Shared Credentials file
   ## DevOps environment variables
-  DEVOPS_ACCOUNT_NAME: devops  ## ${{ secrets.DEVOPS_ACCOUNT_NAME }}
-  DEVOPS_ACCESS_ROLE: DevOps--Custom-Access.Role  ## ${{ secrets.DEVOPS_ACCESS_ROLE }}
+  DEVOPS_ACCOUNT_NAME: ${{ secrets.DEVOPS_ACCOUNT_NAME }}
+  DEVOPS_ACCESS_ROLE: ${{ secrets.DEVOPS_ACCESS_ROLE }}
   ## Troubleshooting Sections
   troubleshooting: false
 ####----------------------------------------------------------------------------
@@ -366,7 +366,7 @@ jobs:
         uses: emvaldes/terraform-controller@master
         id: destroy-terraform
         with:
-          destroy-terraform: false  ## ${destroy_terraform}
+          destroy-terraform: ${destroy_terraform}
 ## Terraform Log-levels: TRACE, DEBUG, INFO, WARN or ERROR
           terraform-loglevel: false
         continue-on-error: false
