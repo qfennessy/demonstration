@@ -1,4 +1,4 @@
-# S3 Bucket config#
+# S3 Bucket config #
 resource "aws_iam_role" "allow_instance_s3" {
   name = "${var.name}_allow_instance_s3"
 
